@@ -1,0 +1,50 @@
+{
+  "niche": "职场成长/自媒体运营",
+  "posts": [
+    {
+      "account": "职场老张",
+      "platform": "抖音",
+      "title": "被裁员那天我在工位坐到凌晨：3 个动作保住赔偿金",
+      "likes": 41000,
+      "comments": 860,
+      "shares": 1200,
+      "days_ago": 6
+    },
+    {
+      "account": "职场老张",
+      "platform": "抖音",
+      "title": "面试反问环节的 3 个加分问题",
+      "likes": 5200,
+      "comments": 140,
+      "shares": 90,
+      "days_ago": 11
+    },
+    {
+      "account": "小鱼搞钱日记",
+      "platform": "小红书",
+      "title": "下班后搞副业 3 个月，收入从 0 到 8000 的路径",
+      "likes": 12500,
+      "comments": 340,
+      "shares": 890,
+      "days_ago": 4
+    },
+    {
+      "account": "小鱼搞钱日记",
+      "platform": "小红书",
+      "title": "副业接单避雷：这 3 种单子千万别接",
+      "likes": 2100,
+      "comments": 76,
+      "shares": 150,
+      "days_ago": 9
+    },
+    {
+      "account": "运营小笔记",
+      "platform": "公众号",
+      "title": "私域涨粉的 4 个抓手",
+      "likes": 760,
+      "comments": 32,
+      "shares": 88,
+      "days_ago": 21
+    }
+  ]
+}

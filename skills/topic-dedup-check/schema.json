@@ -1,0 +1,88 @@
+{
+  "skill_id": "de_media_01_sk03",
+  "name": "选题去重校验",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["candidates", "library"],
+    "properties": {
+      "candidates": {
+        "type": "array",
+        "description": "候选选题清单（今日新题）",
+        "items": {
+          "type": "object",
+          "required": ["title"],
+          "properties": {
+            "title": {"type": "string", "description": "候选选题标题"},
+            "source": {"type": "string", "description": "来源：热榜候选/竞品爆款/评论区提问/搜索下拉词/节点日历"}
+          }
+        }
+      },
+      "library": {
+        "type": "array",
+        "description": "历史选题库（来自选题知识库导出或用户粘贴）",
+        "items": {
+          "type": "object",
+          "required": ["title"],
+          "properties": {
+            "title": {"type": "string", "description": "历史选题标题"},
+            "days_ago": {"type": "number", "description": "发布距今天数（>90 天可翻新重做）"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "rows"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "去重结论",
+        "properties": {
+          "候选数": {"type": "integer"},
+          "历史库条数": {"type": "integer"},
+          "重复": {"type": "integer"},
+          "相似(可重做)": {"type": "integer"},
+          "通过": {"type": "integer"},
+          "阈值": {"type": "string"}
+        }
+      },
+      "rows": {
+        "type": "array",
+        "description": "判定明细，按相似度降序",
+        "items": {
+          "type": "object",
+          "properties": {
+            "候选选题": {"type": "string"},
+            "最高相似度": {"type": "number"},
+            "最接近的历史题": {"type": "string"},
+            "历史题距今(天)": {"type": "number"},
+            "判定": {"type": "string"},
+            "说明": {"type": "string"}
+          }
+        }
+      },
+      "need_review": {
+        "type": "array",
+        "description": "模型复核改判项（字面通过但语义重复等）",
+        "items": {"type": "string"}
+      }
+    },
+    "x-rendered-from": "capability:verify"
+  },
+  "scripts": {
+    "check": "scripts/dedup_check.py",
+    "usage": "python scripts/dedup_check.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/选题去重清单.xlsx", "out/dedup_check.json"],
+  "constraints": {
+    "max_input_length": 20000,
+    "dup_threshold": 0.60,
+    "similar_threshold": 0.40,
+    "revive_window_days": 90,
+    "differentiation_required": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

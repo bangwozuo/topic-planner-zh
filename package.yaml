@@ -1,0 +1,50 @@
+name: 选题策划师
+repo: bangwozuo/topic-planner-zh
+legacy_name: 爆款选题策划师
+version: 0.2.0
+asset_type: prompt-only
+stage: P0
+complexity: S-M：WF1/WF4 需热榜连接器（M），其余纯提示词（S），总估 8-12 人日
+group: 自媒体创作者
+runtime_dependencies: none
+api_key_required: false
+demand_ids:
+  - D01
+  - D12
+  - D28
+
+workflows:
+  - name: 热点聚合扫描
+    id: de_media_01_wf01
+  - name: 选题库去重匹配
+    id: de_media_01_wf02
+  - name: 选题包生成
+    id: de_media_01_wf03
+  - name: 每周选题复盘
+    id: de_media_01_wf04
+
+skills:
+  - id: hot-topic-radar
+    name: 全平台热点雷达
+    family: 
+  - id: competitor-track
+    name: 竞品动态追踪
+    family: 
+  - id: topic-dedup-check
+    name: 选题去重校验
+    family: 
+  - id: topic-knowledge-base
+    name: 选题知识库
+    family: 
+  - id: viral-title-craft
+    name: 爆款标题锻造
+    family: 
+  - id: viral-structure-decode
+    name: 爆款结构拆解
+    family: 
+
+compliance:
+  ai_label_required: true
+  human_review_required: true
+  forbidden_words_check: true
+  official_api_only: true

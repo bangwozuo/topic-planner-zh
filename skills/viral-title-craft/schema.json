@@ -1,0 +1,74 @@
+{
+  "skill_id": "de_media_01_sk05",
+  "name": "爆款标题锻造",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["topic", "platform"],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "选题（含核心内容方向）"
+      },
+      "platform": {
+        "type": "string",
+        "description": "目标平台，决定字数上限与截断规则",
+        "enum": ["小红书", "抖音", "公众号", "B站", "知乎"]
+      },
+      "audience": {
+        "type": "string",
+        "description": "目标人群（身份代入公式用）"
+      },
+      "facts": {
+        "type": "array",
+        "description": "可用于标题的真实数据点（结果前置公式用），如「47 天涨 1 万粉」",
+        "items": {"type": "string"}
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["titles", "advice"],
+    "properties": {
+      "titles": {
+        "type": "array",
+        "description": "3 个候选标题，须来自 3 种不同公式",
+        "items": {
+          "type": "object",
+          "properties": {
+            "标题": {"type": "string"},
+            "字数": {"type": "integer", "description": "小红书≤20 / 抖音≤30"},
+            "公式": {"type": "string", "enum": ["数字锚点", "反差悬念", "身份代入", "结果前置", "疑问钩子", "警告避雷"]},
+            "吸引人群": {"type": "string"},
+            "风险提示": {"type": "string"}
+          }
+        }
+      },
+      "advice": {
+        "type": "object",
+        "description": "发布建议：主发 + A/B 备选 + 正文兑现位",
+        "properties": {
+          "主发": {"type": "string"},
+          "A/B备选": {"type": "array", "items": {"type": "string"}},
+          "正文兑现位": {"type": "string", "description": "标题悬念须在正文前 30% 内开始回答"}
+        }
+      },
+      "checks": {
+        "type": "array",
+        "description": "六项自检结果（字数/前置钩子/极限词/悬念兑现/数字真实/公式互异）",
+        "items": {"type": "string"}
+      }
+    },
+    "x-rendered-from": "capability:optimize_listing"
+  },
+  "constraints": {
+    "max_input_length": 5000,
+    "title_limit": {"小红书": 20, "抖音": 30, "公众号": 64},
+    "hook_position_chars": 15,
+    "suspense_payoff_pct": 30,
+    "formulas_per_topic": 3,
+    "forbidden_words": ["最好", "第一", "100%", "独家", "不看后悔", "速删"],
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

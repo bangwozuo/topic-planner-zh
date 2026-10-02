@@ -1,0 +1,99 @@
+{
+  "skill_id": "de_media_01_sk04",
+  "name": "选题知识库",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["operation"],
+    "properties": {
+      "operation": {
+        "type": "string",
+        "description": "操作类型：入库 / 查重标记 / 状态流转 / 权重回写 / 库体检",
+        "enum": ["入库", "查重标记", "状态流转", "权重回写", "库体检"]
+      },
+      "entries": {
+        "type": "array",
+        "description": "操作对象条目（入库为候选选题；权重回写为来源统计数据）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "选题ID": {"type": "string", "description": "T0001 起连续编号，永不复用"},
+            "title": {"type": "string", "description": "标题"},
+            "source": {"type": "string", "description": "四来源：平台热榜/竞品爆款拆解/评论区高赞提问/搜索下拉词", "enum": ["平台热榜", "竞品爆款拆解", "评论区高赞提问", "搜索下拉词"]},
+            "quadrant": {"type": "string", "description": "四象限：时效×垂直/常青×垂直/时效×泛/常青×泛", "enum": ["时效×垂直", "常青×垂直", "时效×泛", "常青×泛"]},
+            "score": {"type": "number", "description": "三因子评分：≥70 冲 / 55-70 备选 / <55 弃"},
+            "status": {"type": "string", "description": "状态：候选/待人工确认/已入库/已排期/已发布/已复盘/淘汰"},
+            "weight": {"type": "number", "description": "来源权重，区间 [0.5, 1.5]，初始 1.0"},
+            "expire_at": {"type": "string", "description": "节点类选题的过期时间"}
+          }
+        }
+      },
+      "library": {
+        "type": "array",
+        "description": "当前库文件内容（Excel/CSV 导出或粘贴）"
+      },
+      "source_stats": {
+        "type": "object",
+        "description": "权重回写用：各来源的上季度爆款率与样本量",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "quarter": {"type": "string"},
+            "viral_rate": {"type": "number", "description": "该来源选题的爆款率（基准 1/10）"},
+            "sample": {"type": "number", "description": "样本量，<10 不调权"},
+            "weight": {"type": "number", "description": "当前权重"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["operations", "summary"],
+    "properties": {
+      "operations": {
+        "type": "array",
+        "description": "库操作清单——全部待人工确认，AI 不直接生效",
+        "items": {
+          "type": "object",
+          "properties": {
+            "操作": {"type": "string", "enum": ["新增入库", "标记重复", "状态流转", "权重回写", "降级清理", "拒绝入库"]},
+            "条目": {"type": "string"},
+            "选题ID": {"type": "string"},
+            "理由": {"type": "string"}
+          }
+        }
+      },
+      "summary": {
+        "type": "object",
+        "description": "库状态摘要：各状态分布 / 僵尸条目 / 来源权重",
+        "properties": {
+          "总条目": {"type": "integer"},
+          "状态分布": {"type": "string"},
+          "僵尸条目": {"type": "integer"},
+          "来源权重": {"type": "string"}
+        }
+      },
+      "need_confirm": {
+        "type": "array",
+        "description": "需人工确认逐条列表与默认建议",
+        "items": {"type": "string"}
+      }
+    },
+    "x-rendered-from": "capability:connector_io"
+  },
+  "constraints": {
+    "max_input_length": 20000,
+    "id_prefix": "T",
+    "score_grades": {"go": 70, "backup": 55},
+    "weight_formula": "0.7*min(viral_rate/0.1,1.5) + 0.3*current",
+    "weight_bounds": [0.5, 1.5],
+    "min_sample_for_weight": 10,
+    "viral_baseline": "1/10",
+    "zombie_days": 60,
+    "library_cap": 200,
+    "read_only_connectors": true,
+    "human_confirm_required": true,
+    "ai_label_required": true
+  }
+}

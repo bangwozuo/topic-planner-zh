@@ -1,0 +1,14 @@
+{
+  "operation": "入库+权重回写",
+  "entries": [
+    {"title": "面试被问期望薪资怎么答：3 个话术模板", "source": "搜索下拉词", "quadrant": "常青×垂直", "score": 68},
+    {"title": "某地突发地震避险指南", "source": "平台热榜", "quadrant": "时效×泛", "score": 95},
+    {"title": "双 11 前必做的 5 个购物车整理动作", "source": "搜索下拉词", "quadrant": "时效×垂直", "score": 72, "expire_at": "2026-11-10"}
+  ],
+  "source_stats": {
+    "平台热榜": {"quarter": "2026Q3", "viral_rate": 0.14, "sample": 28, "weight": 1.0},
+    "竞品爆款拆解": {"quarter": "2026Q3", "viral_rate": 0.20, "sample": 15, "weight": 1.0},
+    "评论区高赞提问": {"quarter": "2026Q3", "viral_rate": 0.05, "sample": 22, "weight": 1.0},
+    "搜索下拉词": {"quarter": "2026Q3", "viral_rate": 0.08, "sample": 6, "weight": 1.0}
+  }
+}

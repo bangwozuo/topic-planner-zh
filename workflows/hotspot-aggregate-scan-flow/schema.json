@@ -1,0 +1,109 @@
+{
+  "workflow_id": "de_media_01_wf01",
+  "name": "热点聚合扫描",
+  "type": "composite",
+  "skill_refs": [
+    "de_media_01_sk01",
+    "de_media_01_sk02"
+  ],
+  "scripts": {
+    "run_flow": "scripts/run_flow.py",
+    "usage": "python scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/每日候选池.xlsx", "out/daily_pool.json", "out/radar_scan.json", "out/competitor_track.json"],
+  "input": {
+    "type": "object",
+    "required": [],
+    "properties": {
+      "date": {"type": "string", "description": "流程日期，默认当天"},
+      "niche": {"type": "string", "description": "账号定位（赛道标记参考）"},
+      "hotlist": {
+        "type": "object",
+        "description": "步骤 1 输入：热榜条目（与 competitors 至少提供一个）",
+        "properties": {
+          "date": {"type": "string"},
+          "entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["title", "platform", "heat"],
+              "properties": {
+                "title": {"type": "string"},
+                "platform": {"type": "string"},
+                "heat": {"type": "number"},
+                "rank": {"type": "integer"},
+                "hours_since": {"type": "number", "description": "超 168h 淘汰"}
+              }
+            }
+          }
+        }
+      },
+      "competitors": {
+        "type": "object",
+        "description": "步骤 2 输入：竞品发帖记录",
+        "properties": {
+          "niche": {"type": "string"},
+          "posts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["account", "title", "likes"],
+              "properties": {
+                "account": {"type": "string"},
+                "platform": {"type": "string"},
+                "title": {"type": "string"},
+                "likes": {"type": "number"},
+                "comments": {"type": "number"},
+                "shares": {"type": "number"},
+                "days_ago": {"type": "number", "description": "30 天窗口 + 14 天断更预警"}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["pool", "summary"],
+    "properties": {
+      "pool": {
+        "type": "array",
+        "description": "候选池：雷达 A/B 级 + 竞品爆款衍生（占比 ≤40%，标注禁止照搬选题）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "类型": {"type": "string", "enum": ["热点（雷达）", "竞品爆款衍生"]},
+            "条目": {"type": "string"},
+            "得分": {"type": "number"},
+            "级别": {"type": "string"},
+            "建议": {"type": "string"}
+          }
+        }
+      },
+      "alerts": {
+        "type": "array",
+        "description": "断更预警与红线拦截说明",
+        "items": {"type": "string"}
+      },
+      "summary": {
+        "type": "object",
+        "description": "两步上游汇总 + 今日建议 Top3"
+      },
+      "deliverable": {
+        "type": "string",
+        "description": "out/每日候选池.xlsx + out/daily_pool.json"
+      }
+    }
+  },
+  "constraints": {
+    "trigger": "定时 每日 07:30",
+    "half_life_hours": 48,
+    "viral_multiple": 5,
+    "competitor_share_max": 0.40,
+    "redline_excluded_from_pool": true,
+    "degradation_paths": ["纯竞品日", "纯热点日", "今日无输入占位"],
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

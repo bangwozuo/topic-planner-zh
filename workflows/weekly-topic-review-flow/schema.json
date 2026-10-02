@@ -1,0 +1,106 @@
+{
+  "workflow_id": "de_media_01_wf04",
+  "name": "每周选题复盘",
+  "type": "composite",
+  "skill_refs": [
+    "de_media_01_sk06",
+    "de_media_01_sk04"
+  ],
+  "scripts": {
+    "run_flow": "scripts/run_flow.py",
+    "usage": "python scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/选题复盘报告.xlsx", "out/本周表现Top5.png", "out/weekly_review.json"],
+  "input": {
+    "type": "object",
+    "required": ["posts"],
+    "properties": {
+      "week": {
+        "type": "string",
+        "description": "周标识（如 2026-W40）"
+      },
+      "posts": {
+        "type": "array",
+        "description": "上周发布记录（创作者后台导出）",
+        "items": {
+          "type": "object",
+          "required": ["title", "likes"],
+          "properties": {
+            "title": {"type": "string"},
+            "source": {"type": "string", "description": "选题来源：平台热榜/竞品爆款拆解/评论区高赞提问/搜索下拉词/节点日历"},
+            "quadrant": {"type": "string", "description": "四象限归属"},
+            "views": {"type": "number", "description": "播放/阅读（缺失则点赞率标 —）"},
+            "likes": {"type": "number", "description": "点赞"},
+            "comments": {"type": "number", "description": "评论（伪爆款识别：评论 < 点赞 1% 疑似注水）"},
+            "collects": {"type": "number", "description": "收藏"},
+            "days_since_post": {"type": "number", "description": "发布距今天数"}
+          }
+        }
+      },
+      "avg_likes_30d": {
+        "type": "number",
+        "description": "账号 30 天点赞均值（后台数据；缺省用本周条均近似并标注须校准）"
+      },
+      "source_weights": {
+        "type": "object",
+        "description": "各来源当前权重（缺省 1.0）",
+        "additionalProperties": {"type": "number"}
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "rows"],
+    "properties": {
+      "rows": {
+        "type": "array",
+        "description": "复盘明细，按点赞降序",
+        "items": {
+          "type": "object",
+          "properties": {
+            "标题": {"type": "string"},
+            "来源": {"type": "string"},
+            "象限": {"type": "string"},
+            "标题句式": {"type": "string", "enum": ["数字锚点", "疑问悬念", "反差词", "平铺直叙"]},
+            "点赞": {"type": "integer"},
+            "点赞/基准": {"type": "number"},
+            "判定": {"type": "string", "enum": ["🔥 爆款", "偏高", "常态"]},
+            "点赞率": {"type": "string"}
+          }
+        }
+      },
+      "weights": {
+        "type": "array",
+        "description": "来源权重更新建议（0.7×min(率/0.1,1.5)+0.3×当前；样本 <10 不调权；待人工确认）",
+        "items": {"type": "object"}
+      },
+      "summary": {
+        "type": "object",
+        "description": "爆款率与判定 / 三维归因分布 / 下周倾向",
+        "properties": {
+          "发布条数": {"type": "integer"},
+          "爆款条数": {"type": "integer"},
+          "爆款率": {"type": "string"},
+          "爆款率判定": {"type": "string"},
+          "下周倾向": {"type": "string"}
+        }
+      },
+      "deliverable": {"type": "string", "description": "out/选题复盘报告.xlsx + out/本周表现Top5.png + out/weekly_review.json"}
+    }
+  },
+  "constraints": {
+    "trigger": "定时 每周一 09:00",
+    "viral_multiple": 5,
+    "viral_rate_baseline": 0.1,
+    "weight_formula": "0.7*min(rate/0.1,1.5) + 0.3*current",
+    "weight_bounds": [0.5, 1.5],
+    "min_sample_for_weight": 10,
+    "weight_change_alert": 0.2,
+    "like_rate_ok": 0.03,
+    "evergreen_floor": 0.60,
+    "hotspot_cap": 0.30,
+    "no_fudging_data": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

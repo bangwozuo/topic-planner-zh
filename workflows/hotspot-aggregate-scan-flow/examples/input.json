@@ -1,0 +1,101 @@
+{
+  "date": "2026-09-30",
+  "niche": "职场成长/自媒体运营",
+  "hotlist": {
+    "date": "2026-09-30",
+    "entries": [
+      {
+        "title": "00后整顿职场：拒绝无效加班从这3句话开始",
+        "platform": "抖音",
+        "heat": 1860000,
+        "rank": 2,
+        "hours_since": 9
+      },
+      {
+        "title": "00后整顿职场，拒绝无效加班的3句话",
+        "platform": "小红书",
+        "heat": 92000,
+        "rank": 5,
+        "hours_since": 14
+      },
+      {
+        "title": "某地突发地震，多地震感明显",
+        "platform": "微博",
+        "heat": 2100000,
+        "rank": 1,
+        "hours_since": 3
+      },
+      {
+        "title": "普通人搞钱副业：下班后2小时的3种变现路径",
+        "platform": "小红书",
+        "heat": 65000,
+        "rank": 11,
+        "hours_since": 6
+      },
+      {
+        "title": "面试官最后问「你有什么问题吗」怎么答",
+        "platform": "小红书",
+        "heat": 48000,
+        "rank": 15,
+        "hours_since": 20
+      },
+      {
+        "title": "前同事裁员的那个下午，我在工位学到的3件事",
+        "platform": "知乎",
+        "heat": 22000,
+        "rank": 19,
+        "hours_since": 200
+      }
+    ]
+  },
+  "competitors": {
+    "niche": "职场成长/自媒体运营",
+    "posts": [
+      {
+        "account": "职场老张",
+        "platform": "抖音",
+        "title": "被裁员那天我在工位坐到凌晨：3 个动作保住赔偿金",
+        "likes": 41000,
+        "comments": 860,
+        "shares": 1200,
+        "days_ago": 6
+      },
+      {
+        "account": "职场老张",
+        "platform": "抖音",
+        "title": "面试反问环节的 3 个加分问题",
+        "likes": 5200,
+        "comments": 140,
+        "shares": 90,
+        "days_ago": 11
+      },
+      {
+        "account": "小鱼搞钱日记",
+        "platform": "小红书",
+        "title": "下班后搞副业 3 个月，收入从 0 到 8000 的路径",
+        "likes": 12500,
+        "comments": 340,
+        "shares": 890,
+        "days_ago": 4
+      },
+      {
+        "account": "小鱼搞钱日记",
+        "platform": "小红书",
+        "title": "副业接单避雷：这 3 种单子千万别接",
+        "likes": 2100,
+        "comments": 76,
+        "shares": 150,
+        "days_ago": 9
+      },
+      {
+        "account": "运营小笔记",
+        "platform": "公众号",
+        "title": "私域涨粉的 4 个抓手",
+        "likes": 760,
+        "comments": 32,
+        "shares": 88,
+        "days_ago": 21
+      }
+    ]
+  }
+}

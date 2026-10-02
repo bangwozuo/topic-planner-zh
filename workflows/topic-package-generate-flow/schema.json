@@ -1,0 +1,84 @@
+{
+  "workflow_id": "de_media_01_wf03",
+  "name": "选题包生成",
+  "type": "composite",
+  "skill_refs": [
+    "de_media_01_sk05",
+    "de_media_01_sk06"
+  ],
+  "scripts": {
+    "run_flow": "scripts/run_flow.py",
+    "usage": "python scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/选题包.xlsx", "out/topic_package.json"],
+  "input": {
+    "type": "object",
+    "required": ["candidates"],
+    "properties": {
+      "platform": {
+        "type": "string",
+        "description": "目标平台，决定标题字数上限（小红书 20 / 抖音 30 / 公众号 64）",
+        "enum": ["小红书", "抖音", "公众号", "B站", "知乎"]
+      },
+      "total_slots": {
+        "type": "number",
+        "description": "当期条数配额（热点机动位 ≤30%）"
+      },
+      "candidates": {
+        "type": "array",
+        "description": "WF2 去重后选题榜条目",
+        "items": {
+          "type": "object",
+          "required": ["title"],
+          "properties": {
+            "title": {"type": "string"},
+            "来源": {"type": "string", "description": "平台热榜/竞品爆款拆解/评论区高赞提问/搜索下拉词/节点日历"},
+            "总分": {"type": "number", "description": "WF2 三因子评分"},
+            "match": {"type": "number", "description": "与账号定位重合度 0-1（≥0.5 视为垂直）"},
+            "hours_since": {"type": "number", "description": "热点距首发小时数"},
+            "evergreen": {"type": "boolean", "description": "常青题标记"},
+            "audience": {"type": "string", "description": "目标受众（默认账号核心粉丝）"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["package", "summary"],
+    "properties": {
+      "package": {
+        "type": "array",
+        "description": "选题包：选题 × 象限 × 排期属性 × 角度 × 受众 × 3 标题",
+        "items": {
+          "type": "object",
+          "properties": {
+            "选题": {"type": "string"},
+            "象限": {"type": "string", "enum": ["时效×垂直", "常青×垂直", "时效×泛", "常青×泛"]},
+            "排期属性": {"type": "string", "description": "固定栏目 / 机动位候补（超 30% 配额）"},
+            "建议角度": {"type": "string"},
+            "目标受众": {"type": "string"},
+            "候选标题（3 公式）": {"type": "string", "description": "数字锚点/反差悬念/疑问钩子各 1，含字数与合规状态"}
+          }
+        }
+      },
+      "skipped": {
+        "type": "array",
+        "description": "跳过说明（常青×泛无差异化、缺字段）",
+        "items": {"type": "object"}
+      },
+      "summary": {"type": "object", "description": "执行摘要（入包/跳过/机动位配额）"},
+      "deliverable": {"type": "string", "description": "out/选题包.xlsx + out/topic_package.json"}
+    }
+  },
+  "constraints": {
+    "trigger": "事件（WF2 后自动，每日 08:00 前交付）",
+    "mobile_cap": 0.30,
+    "titles_per_topic": 3,
+    "platform_title_limits": {"小红书": 20, "抖音": 30, "公众号": 64, "B站": 80, "知乎": 64},
+    "no_auto_publish": true,
+    "no_padding": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

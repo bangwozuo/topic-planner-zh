@@ -1,0 +1,67 @@
+{
+  "week": "2026-W40",
+  "avg_likes_30d": 1800,
+  "source_weights": {
+    "平台热榜": 1.28,
+    "竞品爆款拆解": 1.35,
+    "评论区高赞提问": 0.65,
+    "节点日历": 1.0
+  },
+  "posts": [
+    {
+      "title": "被裁员那天我在工位坐到凌晨：3 个动作保住赔偿金",
+      "source": "竞品爆款拆解",
+      "quadrant": "时效×垂直",
+      "views": 240000,
+      "likes": 12800,
+      "comments": 420,
+      "collects": 980,
+      "days_since_post": 5
+    },
+    {
+      "title": "面试被问期望薪资怎么答：3 个话术模板",
+      "source": "搜索下拉词",
+      "quadrant": "常青×垂直",
+      "views": 52000,
+      "likes": 2600,
+      "comments": 96,
+      "collects": 890,
+      "days_since_post": 4
+    },
+    {
+      "title": "国庆假期后第一天上班，怎么快速找回状态",
+      "source": "节点日历",
+      "quadrant": "时效×垂直",
+      "views": 31000,
+      "likes": 980,
+      "comments": 44,
+      "collects": 120,
+      "days_since_post": 6
+    },
+    {
+      "title": "为什么你一开口汇报就冷场？",
+      "source": "评论区高赞提问",
+      "quadrant": "常青×垂直",
+      "views": 28000,
+      "likes": 1150,
+      "comments": 88,
+      "collects": 210,
+      "days_since_post": 3
+    },
+    {
+      "title": "日常vlog：我的普通一天",
+      "source": "平台热榜",
+      "quadrant": "时效×泛",
+      "views": 9000,
+      "likes": 210,
+      "comments": 12,
+      "collects": 8,
+      "days_since_post": 2
+    },
+    {
+      "title": "没写标题随手发的测试视频",
+      "source": "未标注",
+      "days_since_post": 1
+    }
+  ]
+}

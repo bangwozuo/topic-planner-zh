@@ -1,0 +1,94 @@
+{
+  "workflow_id": "de_media_01_wf02",
+  "name": "选题库去重匹配",
+  "type": "composite",
+  "skill_refs": [
+    "de_media_01_sk03",
+    "de_media_01_sk04"
+  ],
+  "scripts": {
+    "run_flow": "scripts/run_flow.py",
+    "usage": "python scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/去重后选题榜.xlsx", "out/dedup_match_result.json", "out/dedup_check.json"],
+  "input": {
+    "type": "object",
+    "required": ["candidates"],
+    "properties": {
+      "candidates": {
+        "type": "array",
+        "description": "候选选题（可来自 WF1 daily_pool.json 或用户粘贴）",
+        "items": {
+          "type": "object",
+          "required": ["title"],
+          "properties": {
+            "title": {"type": "string"},
+            "source": {"type": "string", "description": "来源：平台热榜/竞品爆款拆解/评论区高赞提问/搜索下拉词/节点日历"},
+            "match": {"type": "number", "description": "与账号定位重合度 0-1（默认 0.8）"},
+            "same_topic_count": {"type": "number", "description": "平台同类内容条数（<20 满分，>200 零分，默认 50）"},
+            "hours_since": {"type": "number", "description": "热点距首发小时数（常青题忽略）"},
+            "evergreen": {"type": "boolean", "description": "常青题标记，时效分恒 0.85"}
+          }
+        }
+      },
+      "library": {
+        "type": "array",
+        "description": "历史选题库（空库提示新账号，查重全过）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {"type": "string"},
+            "days_ago": {"type": "number", "description": "发布距今天数（>90 天可翻新）"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["ranked", "summary"],
+    "properties": {
+      "ranked": {
+        "type": "array",
+        "description": "去重后选题榜（总分 = 时效 0.4 + 垂直 0.3 + 竞争度 0.3）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "选题": {"type": "string"},
+            "时效分": {"type": "number"},
+            "垂直分": {"type": "number"},
+            "竞争度分": {"type": "number"},
+            "总分": {"type": "number"},
+            "级别": {"type": "string", "enum": ["A 冲", "B 备选", "C 弃"]},
+            "查重": {"type": "string", "enum": ["通过", "相似可重做"]}
+          }
+        }
+      },
+      "dropped": {
+        "type": "array",
+        "description": "查重淘汰清单（留原因，不物理删除）",
+        "items": {"type": "object"}
+      },
+      "lib_ops": {
+        "type": "array",
+        "description": "入库建议（带选题 ID 分配，待人工确认，AI 不直接改库）",
+        "items": {"type": "object"}
+      },
+      "summary": {"type": "object", "description": "执行摘要"},
+      "deliverable": {"type": "string", "description": "out/去重后选题榜.xlsx + out/dedup_match_result.json"}
+    }
+  },
+  "constraints": {
+    "trigger": "事件（WF1 完成后自动）",
+    "dup_threshold": 0.60,
+    "similar_threshold": 0.40,
+    "revive_window_days": 90,
+    "score_weights": {"timeliness": 0.4, "vertical": 0.3, "competition": 0.3},
+    "score_grades": {"go": 70, "backup": 55},
+    "competition_bounds": [20, 200],
+    "half_life_hours": 48,
+    "no_score_for_dups": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "skill_id": "de_media_01_sk06",
+  "name": "爆款结构拆解",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["samples"],
+    "properties": {
+      "samples": {
+        "type": "array",
+        "description": "爆款样本（近 30 天点赞超账号均值 5 倍，或用户指定对标）；≥2 条同结构才抽模板",
+        "items": {
+          "type": "object",
+          "required": ["title", "transcript"],
+          "properties": {
+            "title": {"type": "string", "description": "样本标题/主题"},
+            "transcript": {"type": "string", "description": "完整逐字稿/笔记正文（人工转写或字幕导出，不概括）"},
+            "segments": {
+              "type": "array",
+              "description": "时间轴：视频每段起始秒数，图文为屏序",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "start": {"type": "number", "description": "起始秒数/屏序"},
+                  "text": {"type": "string", "description": "该段原文"}
+                }
+              }
+            },
+            "stats": {
+              "type": "object",
+              "description": "后台数据（缺失则只拆结构不判质量）",
+              "properties": {
+                "likes": {"type": "number"},
+                "comments": {"type": "number"},
+                "play": {"type": "number"},
+                "completion": {"type": "number", "description": "完播率，0-1"}
+              }
+            }
+          }
+        }
+      },
+      "purpose": {
+        "type": "string",
+        "description": "拆解用途：模板将套用到什么内容类型"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["structure", "fitness"],
+    "properties": {
+      "structure": {
+        "type": "array",
+        "description": "五段功能结构表（钩子/建立期待/价值密度/反转高潮/CTA）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "起止": {"type": "string"},
+            "功能段": {"type": "string", "enum": ["钩子", "建立期待", "价值密度", "反转/高潮", "CTA"]},
+            "原文摘句": {"type": "string"},
+            "手法标注": {"type": "string", "description": "含六类钩子类型标注"}
+          }
+        }
+      },
+      "rhythm": {
+        "type": "object",
+        "description": "节奏曲线：信息点间隔（秒）与最长注水段定位",
+        "properties": {
+          "信息点间隔": {"type": "string"},
+          "最长注水段": {"type": "string"}
+        }
+      },
+      "template": {
+        "type": "object",
+        "description": "可复用模板（≥2 同结构样本才产出，单样本为观察样本）",
+        "properties": {
+          "可用性": {"type": "string", "enum": ["可复用", "观察样本"]},
+          "填空模板": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "fitness": {
+        "type": "string",
+        "description": "适配/不适配的内容类型及理由"
+      }
+    },
+    "x-rendered-from": "capability:generate_outline"
+  },
+  "constraints": {
+    "max_input_length": 20000,
+    "completion_ok": 0.30,
+    "completion_good": 0.45,
+    "like_rate_ok": 0.03,
+    "comment_rate_ok": 0.005,
+    "collect_rate_ok": 0.05,
+    "min_samples_for_template": 2,
+    "no_ghostwriting": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "skill_id": "de_media_01_sk02",
+  "name": "竞品动态追踪",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["posts"],
+    "properties": {
+      "niche": {
+        "type": "string",
+        "description": "本账号定位（如：职场成长/自媒体运营），用于句式套用方向"
+      },
+      "posts": {
+        "type": "array",
+        "description": "竞品发帖记录（平台主页公开数据的手动浏览记录或截图转写）",
+        "items": {
+          "type": "object",
+          "required": ["account", "title", "likes"],
+          "properties": {
+            "account": {"type": "string", "description": "竞品账号名"},
+            "platform": {"type": "string", "description": "平台：抖音/小红书/公众号/B站等"},
+            "title": {"type": "string", "description": "帖子标题"},
+            "likes": {"type": "number", "description": "点赞数"},
+            "comments": {"type": "number", "description": "评论数（用于疑似注水判定）"},
+            "shares": {"type": "number", "description": "收藏/转发数"},
+            "days_ago": {"type": "number", "description": "距今天数（30 天窗口 + 14 天断更预警）"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "rows"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "追踪概要",
+        "properties": {
+          "追踪账号数": {"type": "integer"},
+          "近30天帖子总数": {"type": "integer"},
+          "爆款条数": {"type": "integer"},
+          "爆款判定规则": {"type": "string"},
+          "断更预警": {"type": "string"},
+          "条均点赞最高": {"type": "string"}
+        }
+      },
+      "rows": {
+        "type": "array",
+        "description": "帖子明细，按点赞降序",
+        "items": {
+          "type": "object",
+          "properties": {
+            "账号": {"type": "string"},
+            "标题": {"type": "string"},
+            "点赞": {"type": "integer"},
+            "基准均值(去本条)": {"type": "number"},
+            "倍数": {"type": "number"},
+            "判定": {"type": "string", "enum": ["🔥 爆款", "偏高", "常态"]},
+            "标题句式": {"type": "string"}
+          }
+        }
+      },
+      "overviews": {
+        "type": "array",
+        "description": "账号概览（条数/节奏/条均点赞/断更状态）",
+        "items": {"type": "object"}
+      }
+    },
+    "x-rendered-from": "capability:collect"
+  },
+  "scripts": {
+    "track": "scripts/competitor_track.py",
+    "usage": "python scripts/competitor_track.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/竞品追踪报告.xlsx", "out/竞品互动对比.png", "out/competitor_track.json"],
+  "constraints": {
+    "max_input_length": 20000,
+    "viral_multiple": 5,
+    "window_days": 30,
+    "stale_days": 14,
+    "leave_one_out_baseline": true,
+    "no_plagiarism": true,
+    "public_data_only": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}
