@@ -144,6 +144,6 @@
       "reason": "缺 title 或 likes，不计入均值与爆款判定"
     }
   ],
-  "generated_at": "2026-10-03 08:57:49",
+  "generated_at": "2026-10-03 21:22:50",
   "note": "权重更新为建议值，须经 topic-knowledge-base 人工确认后生效"
 }
