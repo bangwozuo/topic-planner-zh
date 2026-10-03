@@ -2,6 +2,10 @@
 
 > **每天早会前 5 分钟交付"今日选题包"的选题合伙人**
 
+![仓库演示](docs/demo.mp4)
+
+*上方演示由 5 个代表资产的真实执行截图串接而成：热点雷达（12 条→10 话题分级）、竞品追踪（5 倍均值判爆款）、WF1 候选池合并、WF3 选题包生成、WF4 每周复盘。所有截图来自脚本真实运行，非摆拍。*
+
 [![Stage](https://img.shields.io/badge/stage-P0-orange)](https://github.com/bangwozuo)
 [![Asset](https://img.shields.io/badge/asset-prompt--only-blueviolet)](#资产形态)
 [![NoKey](https://img.shields.io/badge/API%20Key-not%20required-success)](#资产形态)
@@ -20,6 +24,33 @@
 | 技能数 | 6 |
 | 工作流数 | 4 |
 | 旧名存档 | `爆款选题策划师` |
+
+### 数字员工总览
+
+| 项 | 内容 |
+|---|---|
+| 身份 | 选题策划师——每天早会前 5 分钟交付「今日选题包」的选题合伙人 |
+| 做什么 | 热点聚合、选题查重、选题包生成、爆款归因与权重复盘 |
+| 不做什么 | 不做成稿写作（交下游）、不做数据深度分析、不承诺「必爆」 |
+| KPI | 选题包采纳率 ≥40%；每日选题 1h→≤10min；选题库月净增 ≥30 条 |
+| 调度 | WF1 每日 07:30 → WF2 事件触发 → WF3 08:00 前交付 → WF4 每周一 09:00 |
+
+---
+
+## 资产矩阵（10 个资产）
+
+| 资产 | 一句话 | 类型 | README |
+|---|---|---|---|
+| 全平台热点雷达 | 5 平台热榜压成 48h 半衰分级的候选池，灾难红线拦截 | 技能（脚本） | [README](skills/hot-topic-radar/README.md) |
+| 竞品动态追踪 | leave-one-out 5 倍均值判爆款，句式模板可借鉴 | 技能（脚本） | [README](skills/competitor-track/README.md) |
+| 选题去重校验 | 二元组相似度三级查重 + 语义换皮题复核 | 技能（脚本） | [README](skills/topic-dedup-check/README.md) |
+| 选题知识库 | 9 字段入库标准 + 7 态流转 + 来源权重回写（全部待人工确认） | 技能（T4 调度型） | [README](skills/topic-knowledge-base/README.md) |
+| 爆款标题锻造 | 每选题 3 标题 × 3 公式，平台字数核对 + 六项自检 | 技能（纯提示词） | [README](skills/viral-title-craft/README.md) |
+| 爆款结构拆解 | 五段功能结构 + 节奏曲线 + 量化基准判定 | 技能（纯提示词） | [README](skills/viral-structure-decode/README.md) |
+| 热点聚合扫描 | 每日 07:30 雷达+竞品两路情报合并成候选池（DAG） | 工作流 | [README](workflows/hotspot-aggregate-scan-flow/README.md) |
+| 选题库去重匹配 | 候选池查重 → 三因子评分 → 入库建议（DAG） | 工作流 | [README](workflows/topic-lib-dedup-match-flow/README.md) |
+| 选题包生成 | 四象限归类 + 3 公式候选标题 + 建议角度（DAG） | 工作流 | [README](workflows/topic-package-generate-flow/README.md) |
+| 每周选题复盘 | 判爆款 + 三维归因 + 来源权重更新建议（DAG） | 工作流 | [README](workflows/weekly-topic-review-flow/README.md) |
 
 ---
 
@@ -106,23 +137,23 @@ topic-planner-zh/
 
 ## 技能清单（6 个）
 
-| # | 技能 | 能力族 | 复杂度 | 提示词 | 文档 |
-|---|------|--------|--------|--------|------|
-| 1 | 全平台热点雷达 | 数据采集 | `M` | [prompt.txt](skills/hot-topic-radar/prompt.txt) | [docs](skills/hot-topic-radar/docs/) |
-| 2 | 竞品动态追踪 | 摘要提炼 | `M` | [prompt.txt](skills/competitor-track/prompt.txt) | [docs](skills/competitor-track/docs/) |
-| 3 | 选题去重校验 | 选题创意 | `S` | [prompt.txt](skills/topic-dedup-check/prompt.txt) | [docs](skills/topic-dedup-check/docs/) |
-| 4 | 选题知识库 | 标签话题 | `S` | [prompt.txt](skills/topic-knowledge-base/prompt.txt) | [docs](skills/topic-knowledge-base/docs/) |
-| 5 | 爆款标题锻造 | 上架优化 | `S` | [prompt.txt](skills/viral-title-craft/prompt.txt) | [docs](skills/viral-title-craft/docs/) |
-| 6 | 爆款结构拆解 | 文案生成 | `S` | [prompt.txt](skills/viral-structure-decode/prompt.txt) | [docs](skills/viral-structure-decode/docs/) |
+| # | 技能 | 能力族 | 复杂度 | 入口 | 提示词 |
+|---|------|--------|--------|------|--------|
+| 1 | 全平台热点雷达 | 数据采集 | `M` | [README](skills/hot-topic-radar/README.md) | [prompt.txt](skills/hot-topic-radar/prompt.txt) |
+| 2 | 竞品动态追踪 | 摘要提炼 | `M` | [README](skills/competitor-track/README.md) | [prompt.txt](skills/competitor-track/prompt.txt) |
+| 3 | 选题去重校验 | 选题创意 | `S` | [README](skills/topic-dedup-check/README.md) | [prompt.txt](skills/topic-dedup-check/prompt.txt) |
+| 4 | 选题知识库 | 标签话题 | `S` | [README](skills/topic-knowledge-base/README.md) | [prompt.txt](skills/topic-knowledge-base/prompt.txt) |
+| 5 | 爆款标题锻造 | 上架优化 | `S` | [README](skills/viral-title-craft/README.md) | [prompt.txt](skills/viral-title-craft/prompt.txt) |
+| 6 | 爆款结构拆解 | 文案生成 | `S` | [README](skills/viral-structure-decode/README.md) | [prompt.txt](skills/viral-structure-decode/prompt.txt) |
 
 ## 工作流清单（4 条）
 
-| # | 工作流 | 阶段 | 复杂度 | 触发 | 定义 | 文档 |
+| # | 工作流 | 阶段 | 复杂度 | 触发 | 定义 | 入口 |
 |---|--------|------|--------|------|------|------|
-| 1 | 热点聚合扫描 | `P0` | `M` | 定时（每日 07:30） | [SKILL.md](workflows/hotspot-aggregate-scan-flow/SKILL.md) | [docs](workflows/hotspot-aggregate-scan-flow/docs/) |
-| 2 | 选题库去重匹配 | `P0` | `S` | 事件（WF1 完成后自动） | [SKILL.md](workflows/topic-lib-dedup-match-flow/SKILL.md) | [docs](workflows/topic-lib-dedup-match-flow/docs/) |
-| 3 | 选题包生成 | `P0` | `S` | 事件（WF2 后自动，每日 08:00 前交付） | [SKILL.md](workflows/topic-package-generate-flow/SKILL.md) | [docs](workflows/topic-package-generate-flow/docs/) |
-| 4 | 每周选题复盘 | `P1` | `M` | 定时（每周一 09:00） | [SKILL.md](workflows/weekly-topic-review-flow/SKILL.md) | [docs](workflows/weekly-topic-review-flow/docs/) |
+| 1 | 热点聚合扫描 | `P0` | `M` | 定时（每日 07:30） | [SKILL.md](workflows/hotspot-aggregate-scan-flow/SKILL.md) | [README](workflows/hotspot-aggregate-scan-flow/README.md) |
+| 2 | 选题库去重匹配 | `P0` | `S` | 事件（WF1 完成后自动） | [SKILL.md](workflows/topic-lib-dedup-match-flow/SKILL.md) | [README](workflows/topic-lib-dedup-match-flow/README.md) |
+| 3 | 选题包生成 | `P0` | `S` | 事件（WF2 后自动，每日 08:00 前交付） | [SKILL.md](workflows/topic-package-generate-flow/SKILL.md) | [README](workflows/topic-package-generate-flow/README.md) |
+| 4 | 每周选题复盘 | `P1` | `M` | 定时（每周一 09:00） | [SKILL.md](workflows/weekly-topic-review-flow/SKILL.md) | [README](workflows/weekly-topic-review-flow/README.md) |
 
 ---
 
