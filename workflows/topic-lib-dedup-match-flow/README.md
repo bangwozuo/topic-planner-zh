@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行（`python scripts/run_flow.py --demo`，退出码 0）：候选 5 → 查重淘汰 1，A 冲 4 / B 备选 0 / C 弃 0，入库建议 4 条待人工确认。*
 
 ---

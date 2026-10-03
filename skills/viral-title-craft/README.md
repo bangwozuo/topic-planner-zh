@@ -7,6 +7,8 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自按 `prompt.txt` 规则对 `examples/input.json` 的产出（T2 纯提示词资产，字数经 Python `len()` 实测核对）：3 标题 × 3 公式全部通过六项自检，并附 3 条淘汰标题记录。*
 
 ---

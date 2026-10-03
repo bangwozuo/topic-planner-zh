@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行（`python scripts/dedup_check.py --demo`，退出码 0）：候选 5 条 × 历史库 4 条 → 🔴 重复 1 / 🟡 相似 0 / 🟢 通过 4。*
 
 ---

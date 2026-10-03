@@ -7,6 +7,8 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自按 `prompt.txt` SOP 对 `examples/input.json` 的产出（T4 纯提示词资产，权重公式经 Python 实测核对）：新增入库 2 条、拒绝入库 1 条（灾难红线）、4 个来源权重回写建议。*
 
 ---

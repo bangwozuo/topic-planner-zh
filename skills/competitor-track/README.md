@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行（`python scripts/competitor_track.py --demo`，退出码 0）：追踪 3 个账号近 30 天 10 条，判出爆款 2 条，断更预警 1 个。*
 
 ---
