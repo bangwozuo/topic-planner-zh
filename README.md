@@ -2,9 +2,9 @@
 
 > **每天早会前 5 分钟交付"今日选题包"的选题合伙人**
 
-![演示](docs/assets/hero.gif)
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/topic-planner-zh@main/docs/assets/hero.gif)
 
-*▲ 实时演示（自动循环）· [▶ 观看完整版合集视频](docs/demo.mp4)*
+*▲ 实时演示（自动循环）· [▶ 观看完整版合集视频](https://cdn.jsdelivr.net/gh/bangwozuo/topic-planner-zh@main/docs/demo.mp4)*
 
 *上方演示由 5 个代表资产的真实执行截图串接而成：热点雷达（12 条→10 话题分级）、竞品追踪（5 倍均值判爆款）、WF1 候选池合并、WF3 选题包生成、WF4 每周复盘。所有截图来自脚本真实运行，非摆拍。*
 

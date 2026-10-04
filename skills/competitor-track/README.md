@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
+🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/topic-planner-zh@main/skills/competitor-track/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/topic-planner-zh/blob/main/skills/competitor-track/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自真实执行（`python scripts/competitor_track.py --demo`，退出码 0）：追踪 3 个账号近 30 天 10 条，判出爆款 2 条，断更预警 1 个。*
 
