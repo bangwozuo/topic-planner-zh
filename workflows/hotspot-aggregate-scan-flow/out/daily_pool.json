@@ -60,6 +60,6 @@
   "alerts": [
     "运营小笔记：⚠ 断更预警（最近更新 21 天前），建议换对标"
   ],
-  "generated_at": "2026-10-03 21:22:52",
+  "generated_at": "2026-10-04 10:10:07",
   "note": "候选池由上游 radar_scan.json 与 competitor_track.json 合并，未新增数据"
 }

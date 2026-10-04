@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-![演示视频](docs/assets/demo.mp4)
+🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
 
 *上图来自真实执行（`python scripts/run_flow.py --demo`，退出码 0）：步骤 1 雷达 6 条→5 话题，步骤 2 竞品 3 账号判出爆款 2 条，步骤 3 合并候选池 5 条，全部产物落盘。*
 

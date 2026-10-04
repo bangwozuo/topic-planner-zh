@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-![演示视频](docs/assets/demo.mp4)
+🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
 
 *上图来自真实执行（`python scripts/dedup_check.py --demo`，退出码 0）：候选 5 条 × 历史库 4 条 → 🔴 重复 1 / 🟡 相似 0 / 🟢 通过 4。*
 

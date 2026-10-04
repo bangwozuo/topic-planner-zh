@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-![演示视频](docs/assets/demo.mp4)
+🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
 
 *上图来自真实执行（`python scripts/run_flow.py --demo`，退出码 0）：候选 5 → 查重淘汰 1，A 冲 4 / B 备选 0 / C 弃 0，入库建议 4 条待人工确认。*
 

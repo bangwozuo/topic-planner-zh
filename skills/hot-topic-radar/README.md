@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-![演示视频](docs/assets/demo.mp4)
+🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自真实执行（`python scripts/radar_scan.py --demo`，退出码 0）：原始 12 条 → 跨平台合并 10 个话题，A 级 1 / B 级 5 / C 级 3 / 红线 1，产物落盘 Excel + PNG + JSON。*
 

@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-![演示视频](docs/assets/demo.mp4)
+🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕流转叙事：业务钩子 → 真实执行 → 数据管线节点动画 → 交付物
 
 *上图来自真实执行（`python scripts/run_flow.py --demo`，退出码 0）：本周 5 条判出爆款 1 条，爆款率 20% 达标（基准 1/10），单来源样本均 <10 全部不调权，产物落盘 Excel + PNG + JSON。*
 
