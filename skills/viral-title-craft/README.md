@@ -7,7 +7,9 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/topic-planner-zh@main/skills/viral-title-craft/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/topic-planner-zh/blob/main/skills/viral-title-craft/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/topic-planner-zh@main/skills/viral-title-craft/docs/assets/demo.gif)
+
+🎬 **[▶ 观看高清完整版（mp4）](https://cdn.jsdelivr.net/gh/bangwozuo/topic-planner-zh@main/skills/viral-title-craft/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自按 `prompt.txt` 规则对 `examples/input.json` 的产出（T2 纯提示词资产，字数经 Python `len()` 实测核对）：3 标题 × 3 公式全部通过六项自检，并附 3 条淘汰标题记录。*
 
