@@ -146,3 +146,10 @@ python scripts/run_flow.py --demo      # 无输入看效果
 ---
 
 *本复合技能定义遵循 [bangwozuo 数字员工资产规范](https://github.com/bangwozuo/digital-employee-spec) v3.0*
+
+## 输出规格（字段清单）
+
+| 字段 | 说明 |
+|------|------|
+| `pool` | 候选池：雷达 A/B 级 + 竞品爆款衍生（占比 ≤40%，标注禁止照搬选题） |
+| `summary` | 两步上游汇总 + 今日建议 Top3 |

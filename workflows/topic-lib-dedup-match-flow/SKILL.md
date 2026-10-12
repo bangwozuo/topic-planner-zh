@@ -145,3 +145,10 @@ python scripts/run_flow.py --demo      # 无输入看效果
 ---
 
 *本复合技能定义遵循 [bangwozuo 数字员工资产规范](https://github.com/bangwozuo/digital-employee-spec) v3.0*
+
+## 输出规格（字段清单）
+
+| 字段 | 说明 |
+|------|------|
+| `ranked` | 去重后选题榜（总分 = 时效 0.4 + 垂直 0.3 + 竞争度 0.3） |
+| `summary` | 执行摘要 |

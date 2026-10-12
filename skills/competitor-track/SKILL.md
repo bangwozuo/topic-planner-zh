@@ -121,3 +121,10 @@ python scripts/competitor_track.py --demo        # 无输入也能看效果
 ---
 
 *本技能遵循 [bangwozuo 数字员工资产规范](https://github.com/bangwozuo/digital-employee-spec) v3.0*
+
+## 输出规格（字段清单）
+
+| 字段 | 说明 |
+|------|------|
+| `summary` | 追踪概要 |
+| `rows` | 帖子明细，按点赞降序 |

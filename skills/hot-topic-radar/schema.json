@@ -4,7 +4,9 @@
   "type": "atomic",
   "input": {
     "type": "object",
-    "required": ["entries"],
+    "required": [
+      "entries"
+    ],
     "properties": {
       "date": {
         "type": "string",
@@ -15,13 +17,32 @@
         "description": "热榜条目列表（用户从各平台热榜转写/粘贴，不做爬虫）",
         "items": {
           "type": "object",
-          "required": ["title", "platform", "heat"],
+          "required": [
+            "title",
+            "platform",
+            "heat"
+          ],
           "properties": {
-            "title": {"type": "string", "description": "热点标题"},
-            "platform": {"type": "string", "description": "来源平台：抖音/小红书/微博/知乎/B站"},
-            "heat": {"type": "number", "description": "热度值（该平台口径的互动/阅读量）"},
-            "rank": {"type": "integer", "description": "榜单排名"},
-            "hours_since": {"type": "number", "description": "距首发小时数（超 168h 淘汰）"}
+            "title": {
+              "type": "string",
+              "description": "热点标题"
+            },
+            "platform": {
+              "type": "string",
+              "description": "来源平台：抖音/小红书/微博/知乎/B站"
+            },
+            "heat": {
+              "type": "number",
+              "description": "热度值（该平台口径的互动/阅读量）"
+            },
+            "rank": {
+              "type": "integer",
+              "description": "榜单排名"
+            },
+            "hours_since": {
+              "type": "number",
+              "description": "距首发小时数（超 168h 淘汰）"
+            }
           }
         }
       }
@@ -29,20 +50,39 @@
   },
   "output": {
     "type": "object",
-    "required": ["summary", "rows"],
+    "required": [
+      "summary",
+      "rows"
+    ],
     "properties": {
       "summary": {
         "type": "object",
         "description": "采集概要",
         "properties": {
-          "采集日期": {"type": "string"},
-          "原始条目": {"type": "integer"},
-          "合并后话题": {"type": "integer"},
-          "A级(追)": {"type": "integer"},
-          "B级(观察)": {"type": "integer"},
-          "C级(淘汰)": {"type": "integer"},
-          "红线标记": {"type": "integer"},
-          "平台分布": {"type": "string"}
+          "采集日期": {
+            "type": "string"
+          },
+          "原始条目": {
+            "type": "integer"
+          },
+          "合并后话题": {
+            "type": "integer"
+          },
+          "A级(追)": {
+            "type": "integer"
+          },
+          "B级(观察)": {
+            "type": "integer"
+          },
+          "C级(淘汰)": {
+            "type": "integer"
+          },
+          "红线标记": {
+            "type": "integer"
+          },
+          "平台分布": {
+            "type": "string"
+          }
         }
       },
       "rows": {
@@ -51,16 +91,46 @@
         "items": {
           "type": "object",
           "properties": {
-            "热点标题": {"type": "string"},
-            "收录平台": {"type": "string"},
-            "平台数": {"type": "integer"},
-            "热度分(归一)": {"type": "number"},
-            "时效系数": {"type": "number"},
-            "距首发(h)": {"type": "number"},
-            "赛道": {"type": "string", "enum": ["垂直", "泛"]},
-            "得分": {"type": "number"},
-            "级别": {"type": "string", "enum": ["A 追", "B 观察", "C 淘汰", "R 红线"]},
-            "备注": {"type": "string"}
+            "热点标题": {
+              "type": "string"
+            },
+            "收录平台": {
+              "type": "string"
+            },
+            "平台数": {
+              "type": "integer"
+            },
+            "热度分(归一)": {
+              "type": "number"
+            },
+            "时效系数": {
+              "type": "number"
+            },
+            "距首发(h)": {
+              "type": "number"
+            },
+            "赛道": {
+              "type": "string",
+              "enum": [
+                "垂直",
+                "泛"
+              ]
+            },
+            "得分": {
+              "type": "number"
+            },
+            "级别": {
+              "type": "string",
+              "enum": [
+                "A 追",
+                "B 观察",
+                "C 淘汰",
+                "R 红线"
+              ]
+            },
+            "备注": {
+              "type": "string"
+            }
           }
         }
       }
@@ -71,15 +141,22 @@
     "scan": "scripts/radar_scan.py",
     "usage": "python scripts/radar_scan.py --input input.json --outdir out"
   },
-  "artifacts": ["out/热点候选池.xlsx", "out/热点平台分布.png", "out/radar_scan.json"],
+  "artifacts": [
+    "out/热点候选池.xlsx",
+    "out/热点平台分布.png",
+    "out/radar_scan.json"
+  ],
   "constraints": {
     "max_input_length": 20000,
     "half_life_hours": 48,
     "max_age_hours": 168,
-    "cross_platform_bonus": 0.10,
+    "cross_platform_bonus": 0.1,
     "merge_similarity": 0.55,
-    "forbidden_topics": ["灾难事故类热点选题化"],
+    "forbidden_topics": [
+      "灾难事故类热点选题化"
+    ],
     "ai_label_required": true,
-    "human_review_required": true
+    "human_review_required": true,
+    "external_api_required": false
   }
 }
