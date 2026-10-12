@@ -122,23 +122,23 @@ topic-planner-zh/
 
 ## 技能清单（6 个）
 
-| # | 技能 | 能力族 | 复杂度 | 提示词 | 文档 |
-|---|------|--------|--------|--------|------|
-| 1 | 全平台热点雷达 | 数据采集 | `M` | [prompt.txt](skills/hot-topic-radar/prompt.txt) | [docs](skills/hot-topic-radar/docs/) |
-| 2 | 竞品动态追踪 | 数据采集 | `M` | [prompt.txt](skills/competitor-track/prompt.txt) | [docs](skills/competitor-track/docs/) |
-| 3 | 选题去重校验 | 一致性与保真校验 | `S` | [prompt.txt](skills/topic-dedup-check/prompt.txt) | [docs](skills/topic-dedup-check/docs/) |
-| 4 | 选题知识库 | 连接器数据读写 | `S` | [prompt.txt](skills/topic-knowledge-base/prompt.txt) | [docs](skills/topic-knowledge-base/docs/) |
-| 5 | 爆款标题锻造 | 上架与标题优化 | `S` | [prompt.txt](skills/viral-title-craft/prompt.txt) | [docs](skills/viral-title-craft/docs/) |
-| 6 | 爆款结构拆解 | 大纲与结构模板 | `S` | [prompt.txt](skills/viral-structure-decode/prompt.txt) | [docs](skills/viral-structure-decode/docs/) |
+| # | 技能 | 能力族 | 复杂度 | 说明文档 |
+|---|------|--------|--------|----------|
+| 1 | 全平台热点雷达 | 数据采集 | `M` | [README](skills/hot-topic-radar/README.md) |
+| 2 | 竞品动态追踪 | 数据采集 | `M` | [README](skills/competitor-track/README.md) |
+| 3 | 选题去重校验 | 一致性与保真校验 | `S` | [README](skills/topic-dedup-check/README.md) |
+| 4 | 选题知识库 | 连接器数据读写 | `S` | [README](skills/topic-knowledge-base/README.md) |
+| 5 | 爆款标题锻造 | 上架与标题优化 | `S` | [README](skills/viral-title-craft/README.md) |
+| 6 | 爆款结构拆解 | 大纲与结构模板 | `S` | [README](skills/viral-structure-decode/README.md) |
 
 ## 工作流清单（4 条）
 
-| # | 工作流 | 阶段 | 复杂度 | 触发 | 定义 | 文档 |
-|---|--------|------|--------|------|------|------|
-| 1 | 热点聚合扫描 | `P0` | `M` | 定时（每日 07:30） | [SKILL.md](workflows/hotspot-aggregate-scan-flow/SKILL.md) | [docs](workflows/hotspot-aggregate-scan-flow/docs/) |
-| 2 | 选题库去重匹配 | `P0` | `S` | 事件（WF1 完成后自动） | [SKILL.md](workflows/topic-lib-dedup-match-flow/SKILL.md) | [docs](workflows/topic-lib-dedup-match-flow/docs/) |
-| 3 | 选题包生成 | `P0` | `S` | 事件（WF2 后自动，每日 08:00 前交付） | [SKILL.md](workflows/topic-package-generate-flow/SKILL.md) | [docs](workflows/topic-package-generate-flow/docs/) |
-| 4 | 每周选题复盘 | `P1` | `M` | 定时（每周一 09:00） | [SKILL.md](workflows/weekly-topic-review-flow/SKILL.md) | [docs](workflows/weekly-topic-review-flow/docs/) |
+| # | 工作流 | 阶段 | 复杂度 | 触发 | 说明文档 |
+|---|--------|------|--------|------|----------|
+| 1 | 热点聚合扫描 | `P0` | `M` | 定时（每日 07:30） | [README](workflows/hotspot-aggregate-scan-flow/README.md) |
+| 2 | 选题库去重匹配 | `P0` | `S` | 事件（WF1 完成后自动） | [README](workflows/topic-lib-dedup-match-flow/README.md) |
+| 3 | 选题包生成 | `P0` | `S` | 事件（WF2 后自动，每日 08:00 前交付） | [README](workflows/topic-package-generate-flow/README.md) |
+| 4 | 每周选题复盘 | `P1` | `M` | 定时（每周一 09:00） | [README](workflows/weekly-topic-review-flow/README.md) |
 
 ---
 
